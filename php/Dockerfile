@@ -11,6 +11,7 @@ RUN apt-get -qqy update \
                            bcmath \
                            gd \
                            mcrypt \
+                           mbstring \
                            mysql \
                            opcache \
                            pdo_mysql \
