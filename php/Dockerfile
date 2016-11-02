@@ -7,6 +7,9 @@ RUN apt-get -qqy update \
                          libpng12-dev \
                          libxml2-dev \
                          libxslt-dev \
+                         libmemcached-dev \
+ && pecl install memcached \
+ && docker-php-ext-enable memcached \
  && docker-php-ext-install curl \
                            bcmath \
                            gd \
