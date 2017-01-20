@@ -3,6 +3,7 @@ MAINTAINER Michael A. Smith <msmith3@ebay.com>
 RUN apt-get -qqy update \
  && apt-get -qqy install git \
                          libcurl4-gnutls-dev \
+                         libjpeg62-turbo-dev \
                          libmcrypt-dev \
                          libpng12-dev \
                          libxml2-dev \
@@ -10,6 +11,7 @@ RUN apt-get -qqy update \
                          libmemcached-dev \
  && pecl install memcached \
  && docker-php-ext-enable memcached \
+ && docker-php-ext-configure gd --with-jpeg-dir=/usr/include/ \
  && docker-php-ext-install curl \
                            bcmath \
                            gd \
