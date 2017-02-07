@@ -9,8 +9,8 @@ RUN apt-get -qqy update \
                          libxml2-dev \
                          libxslt-dev \
                          libmemcached-dev \
- && pecl install memcached \
- && docker-php-ext-enable memcached \
+ && pecl install memcached xdebug \
+ && docker-php-ext-enable memcached xdebug \
  && docker-php-ext-configure gd --with-jpeg-dir=/usr/include/ \
  && docker-php-ext-install curl \
                            bcmath \
@@ -27,6 +27,6 @@ RUN apt-get -qqy update \
  && until rm -rf /var/lib/apt/lists; do sleep 1; done
 COPY php-fpm.conf /etc/php5/fpm/php-fpm.conf
 COPY www-pool.conf /etc/php5/fpm/pool.d/www.conf
-COPY xdebug-enabler.ini /etc/php5/fpm/conf.d/
+COPY xdebug-enabler.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 CMD ["/usr/local/sbin/php-fpm", "-y", "/etc/php5/fpm/php-fpm.conf"]
 EXPOSE 9001
